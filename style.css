@@ -304,6 +304,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  color: inherit;
   font-family: var(--font-family);
   font-weight: 600;
   transition: var(--transition-smooth);
@@ -559,6 +560,7 @@ button {
 .spec-option-text h4 {
   font-size: 15px;
   font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 2px;
 }
 .spec-option-text p {

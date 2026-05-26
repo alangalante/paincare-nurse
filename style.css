@@ -1081,6 +1081,7 @@ button {
   font-weight: 700;
   flex-shrink: 0;
   transition: var(--transition-smooth);
+  color: #ffffff;
 }
 
 .parameter-option.selected .option-score-tag {

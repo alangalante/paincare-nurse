@@ -304,7 +304,6 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  color: inherit;
   font-family: var(--font-family);
   font-weight: 600;
   transition: var(--transition-smooth);
@@ -451,8 +450,6 @@ button {
   backdrop-filter: blur(10px);
   text-align: left;
   transition: var(--transition-smooth);
-  width: 100%;
-  color: var(--text-primary);
 }
 
 .profile-card:active {
@@ -546,8 +543,6 @@ button {
   border: 1px solid var(--bg-card-border);
   text-align: left;
   transition: var(--transition-smooth);
-  width: 100%;
-  color: var(--text-primary);
 }
 .spec-option-card:active {
   border-color: var(--primary);
@@ -564,7 +559,7 @@ button {
 .spec-option-text h4 {
   font-size: 15px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 2px;
 }
 .spec-option-text p {
@@ -1416,25 +1411,5 @@ button {
   }
   .profile-card {
     padding: 12px;
-  }
-}
-
-/* --- 14. MOBILE SCREEN FULL PAGE RESET --- */
-@media (max-width: 575px) {
-  body {
-    display: block;
-    overflow-y: auto;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-  }
-  .phone-frame {
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-    margin: 0;
   }
 }

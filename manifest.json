@@ -1,0 +1,18 @@
+{
+  "name": "PainCare Mobile",
+  "short_name": "PainCare",
+  "description": "Aplicativo de avaliação e triagem de dor para enfermagem.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#1f2937",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/color/512/medical-heart.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

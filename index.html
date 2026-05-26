@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PainCare Mobile - Avaliação de Dor</title>
+  <meta name="description" content="Aplicativo de avaliação e triagem de dor para enfermagem.">
+  <meta name="theme-color" content="#1e1b4b">
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="https://img.icons8.com/color/192/medical-heart.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+  
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Animated Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- App Wrapper representing a simulated premium device frame -->
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    
+    <div class="app-container">
+      
+      <!-- Top Fixed Header -->
+      <header class="app-header">
+        <div class="header-logo" id="btn-home">
+          <i class="fa-solid fa-notes-medical brand-icon"></i>
+          <span class="brand-name">PainCare<span class="brand-accent">.</span></span>
+        </div>
+        <div class="header-actions">
+          <button id="btn-toggle-theme" class="icon-button" title="Alternar Tema">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="btn-history-view" class="icon-button" title="Histórico de Avaliações">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Scrollable Area -->
+      <main class="app-main" id="main-content">
+
+        <!-- SCREEN 1: WELCOME & INITIAL SCREENING -->
+        <section id="screen-welcome" class="app-screen active">
+          <div class="welcome-hero">
+            <div class="pulse-container">
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring delay-1"></div>
+              <div class="pulse-ring delay-2"></div>
+              <i class="fa-solid fa-heart-pulse welcome-pulse-icon"></i>
+            </div>
+            <h1>Avaliação da Dor</h1>
+            <p>Selecione o perfil do paciente para encontrar a melhor escala clínica de avaliação.</p>
+          </div>
+
+          <div class="screening-section">
+            <h3 class="section-title">Perfil do Paciente</h3>
+            
+            <div class="profile-cards-grid">
+              <!-- Criança Card -->
+              <button class="profile-card" data-profile="criança">
+                <div class="profile-card-icon card-cyan">
+                  <i class="fa-solid fa-child"></i>
+                </div>
+                <div class="profile-card-info">
+                  <h4>Criança</h4>
+                  <p>Pediatria e neonatologia</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Adulto Card -->
+              <button class="profile-card" data-profile="adulto">
+                <div class="profile-card-icon card-indigo">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="profile-card-info">
+                  <h4>Adulto</h4>
+                  <p>Lúcido, analfabeto ou na UTI</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+              </button>
+
+              <!-- Idoso Card -->
+              <button class="profile-card" data-profile="idoso">
+                <div class="profile-card-icon card-purple">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="profile-card-info">
+                  <h4>Idoso</h4>
+                  <p>Lúcido ou com declínio cognitivo</p>
+                </div>
+                <i class="fa-solid fa-chevron-right arrow-indicator"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Stats / Shortcuts -->
+          <div class="welcome-shortcuts">
+            <h4 class="shortcut-title">Acesso Rápido a Escalas</h4>
+            <div class="shortcut-tags">
+              <button class="shortcut-tag" data-scale="wong-baker">Wong-Baker</button>
+              <button class="shortcut-tag" data-scale="eva">EVA</button>
+              <button class="shortcut-tag" data-scale="evn">EVN</button>
+              <button class="shortcut-tag" data-scale="painad">PAINAD</button>
+              <button class="shortcut-tag" data-scale="bps">BPS</button>
+              <button class="shortcut-tag" data-scale="cpot">CPOT</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 2: SPECIFICITY FILTER -->
+        <section id="screen-specificity" class="app-screen">
+          <div class="screen-header">
+            <button class="btn-back icon-button"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2>Refinar Paciente</h2>
+          </div>
+          
+          <p class="screen-subtitle">Selecione o estado clínico ou comunicativo do paciente.</p>
+          
+          <div class="specificity-options-container" id="specificity-options">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- SCREEN 3: RECOMMENDED SCALE SELECTION -->
+        <section id="screen-scale-selector" class="app-screen">
+          <div class="screen-header">
+            <button class="btn-back icon-button"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2>Escala Recomendada</h2>
+          </div>
+
+          <div class="recommended-card-container">
+            <div class="recommended-badge"><i class="fa-solid fa-star"></i> Ideal para o caso</div>
+            <div class="recommended-scale-card" id="recommended-scale-card">
+              <h3 id="rec-scale-title">Escala de Wong-Baker</h3>
+              <p id="rec-scale-desc">Indicada para crianças e adultos que não conseguem quantificar verbalmente em números.</p>
+              <button class="btn-primary" id="btn-start-scale">Iniciar Avaliação <i class="fa-solid fa-play"></i></button>
+            </div>
+          </div>
+
+          <div class="alternative-scales-section" id="alternative-scales-container">
+            <h4 class="section-title">Outras Escalas Disponíveis</h4>
+            <div class="alternative-scales-list" id="alternative-scales-list">
+              <!-- Dynamically populated if more than one matches -->
+            </div>
+          </div>
+        </section>
+
+        <!-- SCREEN 4: SCALE EVALUATOR -->
+        <section id="screen-evaluator" class="app-screen">
+          <!-- Back button and Interactive toggles -->
+          <div class="screen-header-eval">
+            <button class="btn-back icon-button"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 id="evaluator-title">Avaliação</h2>
+            <button id="btn-patient-mode" class="patient-mode-toggle" title="Modo Paciente">
+              <i class="fa-solid fa-rotate"></i> Modo Paciente
+            </button>
+          </div>
+
+          <!-- Scale Content Wrapper -->
+          <div id="scale-content-area" class="scale-content-area">
+            <!-- Scales HTML injected here dynamically -->
+          </div>
+
+          <!-- Nurse observation scale footer -->
+          <div id="observational-footer" class="observational-footer hidden">
+            <div class="live-score-badge">
+              <span>Escore Atual:</span>
+              <span id="live-score-val">0</span>
+            </div>
+            <button class="btn-primary" id="btn-submit-obs-scale">Confirmar Escore <i class="fa-solid fa-circle-check"></i></button>
+          </div>
+        </section>
+
+        <!-- SCREEN 5: RESULTS & CLINICAL GUIDANCE -->
+        <section id="screen-result" class="app-screen">
+          <div class="result-hero-card">
+            <h2>Escore da Dor</h2>
+            <div class="score-display-wrapper">
+              <svg class="score-circle" viewBox="0 0 120 120">
+                <circle class="circle-bg" cx="60" cy="60" r="50"></circle>
+                <circle class="circle-progress" id="result-circle-progress" cx="60" cy="60" r="50" style="stroke-dasharray: 314; stroke-dashoffset: 314;"></circle>
+              </svg>
+              <div class="score-text-container">
+                <span class="score-number" id="result-score-val">7</span>
+                <span class="score-max" id="result-score-max">/10</span>
+              </div>
+            </div>
+            
+            <div class="pain-severity-badge" id="result-severity-badge">
+              Dor Moderada
+            </div>
+            <p class="scale-used-label">Avaliado pela escala: <strong id="result-scale-name">Wong-Baker</strong></p>
+          </div>
+
+          <!-- Clinical Directives / Condutas -->
+          <div class="directives-section">
+            <h3 class="section-title"><i class="fa-solid fa-prescription-bottle-medical"></i> Condutas Clínicas de Enfermagem</h3>
+            <ul class="directives-list" id="result-directives-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <!-- Actions -->
+          <div class="result-actions">
+            <button class="btn-primary" id="btn-save-assessment"><i class="fa-solid fa-floppy-disk"></i> Salvar e Finalizar</button>
+            <button class="btn-secondary" id="btn-discard-assessment"><i class="fa-solid fa-trash-can"></i> Descartar</button>
+          </div>
+        </section>
+
+        <!-- SCREEN 6: HISTORY -->
+        <section id="screen-history" class="app-screen">
+          <div class="screen-header">
+            <button class="btn-back icon-button" id="btn-history-back"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2>Histórico</h2>
+          </div>
+          
+          <p class="screen-subtitle">Registros recentes de dor avaliados neste dispositivo.</p>
+          
+          <div class="history-list-wrapper" id="history-list">
+            <!-- Dynamically populated from localStorage -->
+          </div>
+
+          <div class="history-actions" id="history-clear-container">
+            <button class="btn-secondary danger" id="btn-clear-history">
+              <i class="fa-solid fa-trash-arrow-up"></i> Limpar Histórico
+            </button>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Bottom Status Bar / Decorative -->
+      <footer class="app-footer">
+        <span class="device-home-indicator"></span>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- PWA Service Worker (Bypassed in development to prevent aggressive cache gotchas) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+          registration.unregister().then(() => {
+            console.log('Service Worker antigo removido com sucesso para evitar cache de desenvolvimento.');
+            window.location.reload(); // Hard reload once to fetch the fresh app.js immediately
+          });
+        }
+      });
+    }
+  </script>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
